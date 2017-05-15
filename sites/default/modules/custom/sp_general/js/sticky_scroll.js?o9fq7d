@@ -1,0 +1,117 @@
+/*jslint browser: true, devel: true, eqeq: true, nomen: true, plusplus: true, todo: true, white: true, indent: 2 */
+/*globals Drupal, jQuery, window, L */
+(function ($, window) {
+  "use strict";
+
+  Drupal.behaviors.FixedHeader = {
+    attach: function (context) {
+
+      var
+        sticky      = $(context).find("#page-sticky"),
+        $window     = $(window),
+        isSticky    = false,
+        isScrolling = false
+      ;
+
+      var toggleSticky = function (force) {
+
+        if (isScrolling) {
+          return; // Debouncing.
+        }
+
+        if (force) {
+          isScrolling = true;
+          setTimeout(function () {
+            isScrolling = false;
+          }, 500);
+        }
+
+        if (force || $window.scrollTop() >= 520) {
+          if (!isSticky) {
+            sticky.addClass("sticky-on");
+            isSticky = true;
+          }
+        } else {
+          if (isSticky) {
+            sticky.removeClass("sticky-on");
+            isSticky = false;
+          }
+        }
+      };
+
+      sticky.once('fixed-header', function () {
+        $window.on("scroll", function () {
+          toggleSticky();
+        });
+      });
+
+      // React on menu links and set the header sticky before scrolling.
+      $("#block-system-main-menu a").once('mainmenuclick', function () {
+        var $root = $("html, body");
+
+        $(this).each(function (){
+
+          var
+            link = $(this),
+            target = link.attr("href")
+          ;
+
+          if (!target) {
+            return;
+          }
+
+          // Fouque there is a / in the href.
+          var anchor  = $(target.substr(target.indexOf('#')));
+
+          link.on("click", function () {
+
+            if (!isSticky) {
+              // This gonna be a problem, make it sticky before scroll.
+              toggleSticky(true);
+            }
+
+            //toggleSticky(true);
+            // Also perform a smooth scroll instead of letting the browser
+            // do it.
+            $root.animate({
+              scrollTop: $(anchor).offset().top
+            });
+            return false;
+          });
+        });
+      });
+
+      $("#back-top-sticky").click(function(){
+        $('html,  body').animate({   
+          scrollTop:($($(this).attr("href")).offset().top)
+        },  'slow');  
+        return false;
+      });
+
+      // Fermer menu mobile lors du clic.
+      $('.mainMenu a.active').once('mainmenuclose', function () {
+        $(this).on("click", function() {
+          $('#collapse-main-menu').toggleClass('in');
+        });
+      });
+    }
+  };
+
+}(jQuery, window));
+
+function spgeneral_ajax_load($nid) {
+
+   // Message de chargement
+  $("#ajax-target").empty();
+
+  // Load node content and display it
+  var $url_to_load = "/node/get/ajax/";
+  $url_to_load = $url_to_load.concat($nid);
+  // jQuery("#ajax-target").load( $url_to_load.concat($nid));
+
+  $( "#ajax-target" ).load( $url_to_load, function() {
+    $(".modal-dialog .loader").hide();
+  });
+
+  $('#modal-event').modal('show');
+}

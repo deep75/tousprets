@@ -1,0 +1,191 @@
+/*jslint browser: true, devel: true, eqeq: true, nomen: true, plusplus: true, todo: true, white: true, indent: 2 */
+/*globals Drupal, jQuery, window, L */
+(function ($, document) {
+  "use strict";
+
+  var SearchMap = (function () {
+
+    var map;
+    function init(options) {
+      options = options || {};
+
+      if (!options.map) {
+        return;
+      }
+
+      map = options.map;
+
+      if (options.nodes) {
+
+        // Add once for all some shorcuts over our layers.
+        var popup, html, nid;
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.Marker) {
+            popup = layer.getPopup();
+            if (popup) {
+              html = popup.getContent();
+              if (html) {
+                nid = $(html).attr("data-gnid");
+              }
+            }
+          }
+        });
+      }
+
+      setTimeout(function () {
+        // Center/zoom map if view available.
+        if (options.view && options.zoom) {
+          map.setView(L.latLng(options.view.lat, options.view.lng), options.zoom);
+        } else {
+          if (options.view) {
+            map.panTo(L.latLng(options.view.lat, options.view.lng));
+          } else {
+            if (options.zoom) {
+              map.setZoom(options.zoom);
+            }
+          }
+        }
+      }, 500);
+    }
+
+    return {
+      init: init
+    };
+  }());
+
+  Drupal.SearchMap = SearchMap;
+
+  Drupal.behaviors.SearchMap = {
+    attach: function (context) {
+
+      // Form autosubmit.
+      $(context)
+        .find('#sp-search-search-form')
+        .once('search-map', function () {
+
+          var form = $(this);
+
+          // "Tous" checkbox behavior.
+          var
+            panel       = form.find('#edit-t'),
+            panelIn     = panel.find('.form-type-checkbox'),
+            types       = form.find('input[name="t[]"]'),
+            tous        = types.filter('[value="all"]'),
+            displayed   = false,
+            closeButton = $('<button id="tous-close" style="display:none;"><span class="element-invisible">Fermer</span></button>')
+          ;
+
+          types.on("change", function (event) {
+            event.stopPropagation();
+            var input = $(this);
+            if ("all" === input.val()) {
+              // "Tous" checkbox.
+              types.attr("checked", input.is(":checked"));
+            } else if (types.filter(':checked').length === 0) {
+              types.attr("checked", true);
+            } else if (!input.is(':checked')) {
+              // Others are being unchecked.
+              tous.attr("checked", false);
+            } else if (types.filter(':checked:not([value="all"])').length === types.length - 1) {
+              tous.attr("checked", true);
+            }
+          });
+          $("#edit-s").attr("placeholder", "Ville, Code postal, Département, Région");
+          // Panel show/hide.
+          panelIn.hide();
+          panel.append(closeButton);
+
+          var closeFunction = function(e) {
+            panel.removeClass('active');
+            panelIn.hide();
+            closeButton.hide();
+            displayed = false;
+            // Très important: enlever l'evenement une fois fermé.
+            $(document).unbind("mouseup.closepanel");
+          };
+
+          closeButton.on("click", function (event) {
+            closeFunction(event);
+            // Empêche le submit.
+            return true; 
+          });
+
+
+          panel.find('label:first').on("click", function (event) {
+            event.stopPropagation();
+            if (!displayed) {
+
+              panel.addClass('active');
+              panelIn.show();
+              closeButton.show();
+              displayed = true;
+
+              // Quand on ouvre le div, on met un élément sur le document pour
+              // détecter les clicks qui sont en dehors du panel.
+              $(document).on("mouseup.closepanel", function (e) {
+                // Click pas sur le panel et click pas à l'intérieur.
+                if (!panel.is(e.target) && panel.has(e.target).length === 0) {
+                  closeFunction();
+                }
+              });
+
+              // On empêche la case d'être cochée uniquement quand on est
+              // en train d'ouvrir le panel, s'il est déjà ouvert le comportement
+              // est de laisser le navigateur check/uncheck la checkbox.
+              return false;
+            }
+          });
+
+          // Form reset behavior.
+          var
+            reset   = form.find('#edit-reset'),
+            section = form.find('fieldset.search_advanced')
+          ; 
+          section.onsubmit=function(){console.log("sdfg");return false;};
+          reset.hide();
+          // @see misc/collapse.js
+          section.on("hide.bs.collapse", function (event) {
+            // First reset field values, else the next page will get the
+            // values and load the map (before the form sadly) and results
+            // won't match the form.
+           /* section.find('input').attr('disabled', true);
+            section.find('select').attr('disabled', true);*/
+            /*reset.trigger("click");*/
+          });
+
+          // On page init, trigger the "change" behavior so that
+          // if the "Tous" is checked all will be too.
+          if (tous.is(':checked')) {
+            tous.trigger("change");
+          }
+
+          $(this).on("submit", function () {
+            if (tous.is(':checked')) {
+              types.attr("checked", false);
+            }
+            // Remove all values from empty fields so the GET string
+            // is not polluted by empty parameters.
+            // Thanks to https://stackoverflow.com/a/2418022/552405
+            // all credits goes to this line author.
+            form.find(':input[value=""]').attr('disabled', true);
+            form.find(':input[type="checkbox"]:not(:checked)').attr('disabled', true);
+          });
+        })
+      ;
+
+      var options = (Drupal.settings.SearchMap || {});
+
+      options.nodes = $(context).find('.region-content .node');
+
+      // Initialize our behavior on maps.
+      if (Drupal.settings.leaflet) {
+        var i;
+        for (i = 0; i < Drupal.settings.leaflet.length; i++) {
+          options.map = Drupal.settings.leaflet[i].lMap;
+          SearchMap.init(options);
+        }
+      }
+    }
+  };
+
+}(jQuery, document));

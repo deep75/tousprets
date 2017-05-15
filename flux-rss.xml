@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xml:base="http://tousprets.sports.gouv.fr/flux-rss" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:og="http://ogp.me/ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <channel>
+    <title>Flux Rss</title>
+    <link>http://tousprets.sports.gouv.fr/flux-rss</link>
+    <description></description>
+    <language>fr</language>
+          <item>
+    <title>La France du handball accueille le monde</title>
+    <link>http://tousprets.sports.gouv.fr/evenement/france-du-handball-accueille-monde</link>
+    <description>La France du handball accueille le monde</description>
+     <pubDate>Mercredi 11 Janvier 2017</pubDate>
+ <dc:creator>Contributeur Tous Prêts</dc:creator>
+ <guid isPermaLink="true">http://tousprets.sports.gouv.fr/evenement/france-du-handball-accueille-monde</guid>
+  </item>
+  <item>
+    <title>Le Mondial de Handball mis à l’honneur au ministère des sports !</title>
+    <link>http://tousprets.sports.gouv.fr/evenement/mondial-handball-mis-lhonneur-au-ministere-des-sports</link>
+    <description>Le Mondial de Handball mis à l’honneur au ministère des sports !</description>
+     <pubDate>Jeudi 8 Décembre 2016</pubDate>
+ <dc:creator>Contributeur Tous Prêts</dc:creator>
+ <guid isPermaLink="true">http://tousprets.sports.gouv.fr/evenement/mondial-handball-mis-lhonneur-au-ministere-des-sports</guid>
+  </item>
+  <item>
+    <title>Réussite de l’opération  « Tous Prêts ! » HANDBALL</title>
+    <link>http://tousprets.sports.gouv.fr/evenement/reussite-loperation-tous-prets-handball-0</link>
+    <description>Réussite de l’opération  « Tous Prêts ! » HANDBALL</description>
+     <pubDate>Lundi 28 Novembre 2016</pubDate>
+ <dc:creator>Contributeur Tous Prêts</dc:creator>
+ <guid isPermaLink="true">http://tousprets.sports.gouv.fr/evenement/reussite-loperation-tous-prets-handball-0</guid>
+  </item>
+  <item>
+    <title>Retrouvez tous les dossiers thématiques du comité « 11 tricolore » de l’EURO 2016</title>
+    <link>http://tousprets.sports.gouv.fr/evenement/retrouvez-tous-dossiers-thematiques-du-comite-11-tricolore-leuro-2016</link>
+    <description>Retrouvez tous les dossiers thématiques du comité « 11 tricolore » de l’EURO 2016</description>
+     <pubDate>Lundi 27 Juin 2016</pubDate>
+ <dc:creator>Contributeur Tous Prêts</dc:creator>
+ <guid isPermaLink="true">http://tousprets.sports.gouv.fr/evenement/retrouvez-tous-dossiers-thematiques-du-comite-11-tricolore-leuro-2016</guid>
+  </item>
+  <item>
+    <title>&amp;quot;L’avant-match&amp;quot; de gouvernement.fr</title>
+    <link>http://tousprets.sports.gouv.fr/evenement/lavant-match-gouvernementfr</link>
+    <description>&amp;quot;L’avant-match&amp;quot; de gouvernement.fr</description>
+     <pubDate>Lundi 13 Juin 2016</pubDate>
+ <dc:creator>Contributeur Tous Prêts</dc:creator>
+ <guid isPermaLink="true">http://tousprets.sports.gouv.fr/evenement/lavant-match-gouvernementfr</guid>
+  </item>
+  <item>
+    <title>Calendrier officiel des matchs du Mondial 2017 de handball</title>
+    <link>http://tousprets.sports.gouv.fr/evenement/calendrier-officiel-des-matchs-du-mondial-2017-handball</link>
+    <description>Calendrier officiel des matchs du Mondial 2017 de handball</description>
+     <pubDate>Mardi 7 Juin 2016</pubDate>
+ <dc:creator>Contributeur Tous Prêts</dc:creator>
+ <guid isPermaLink="true">http://tousprets.sports.gouv.fr/evenement/calendrier-officiel-des-matchs-du-mondial-2017-handball</guid>
+  </item>
+  <item>
+    <title>Les enjeux de l’économie du sport</title>
+    <link>http://tousprets.sports.gouv.fr/evenement/enjeux-leconomie-du-sport</link>
+    <description>Les enjeux de l’économie du sport</description>
+     <pubDate>Dimanche 5 Juin 2016</pubDate>
+ <dc:creator>Contributeur Tous Prêts</dc:creator>
+ <guid isPermaLink="true">http://tousprets.sports.gouv.fr/evenement/enjeux-leconomie-du-sport</guid>
+  </item>
+  <item>
+    <title>11 tricolore 29 mars</title>
+    <link>http://tousprets.sports.gouv.fr/content/11-tricolore-29-mars</link>
+    <description>11 tricolore 29 mars</description>
+     <pubDate>Vendredi 3 Juin 2016</pubDate>
+ <dc:creator>Contributeur Tous Prêts</dc:creator>
+ <guid isPermaLink="true">http://tousprets.sports.gouv.fr/content/11-tricolore-29-mars</guid>
+  </item>
+  <item>
+    <title>Label &amp;lt;em&amp;gt;Tous Prêts !&amp;lt;/em&amp;gt;</title>
+    <link>http://tousprets.sports.gouv.fr/label-tous-prets-0</link>
+    <description>Label &amp;lt;em&amp;gt;Tous Prêts !&amp;lt;/em&amp;gt;</description>
+     <pubDate>Vendredi 3 Juin 2016</pubDate>
+ <dc:creator>Contributeur Tous Prêts</dc:creator>
+ <guid isPermaLink="true">http://tousprets.sports.gouv.fr/label-tous-prets-0</guid>
+  </item>
+  <item>
+    <title>Objectifs &amp;quot;Tous Prêts ! &amp;quot;</title>
+    <link>http://tousprets.sports.gouv.fr/objectifs-tous-prets-0</link>
+    <description>Objectifs &amp;quot;Tous Prêts ! &amp;quot;</description>
+     <pubDate>Vendredi 3 Juin 2016</pubDate>
+ <dc:creator>Contributeur Tous Prêts</dc:creator>
+ <guid isPermaLink="true">http://tousprets.sports.gouv.fr/objectifs-tous-prets-0</guid>
+  </item>
+  </channel>
+</rss>
