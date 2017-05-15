@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: tousprets
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: tousprets
+    spec:
+      containers:
+      - name: tousprets
+        image: mcas/tousprets:latest
+        ports:
+        - containerPort: 80
